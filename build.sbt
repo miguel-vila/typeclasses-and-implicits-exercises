@@ -16,7 +16,6 @@ scalacOptions ++= Seq(
   "-Xfatal-warnings",
   "-Xlint",
   "-Yno-adapted-args",
-  "-Ywarn-dead-code",        // N.B. doesn't work well with the ??? hole
   //"-Ywarn-numeric-widen",
   //"-Ywarn-value-discard", // No muy buena idea combinar esto con akka
   "-Xfuture"
