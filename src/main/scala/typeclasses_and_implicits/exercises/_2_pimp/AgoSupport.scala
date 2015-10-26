@@ -22,15 +22,4 @@ import org.joda.time.DateTime
  */
 object AgoSupport {
 
-  class WithAgo(d: FiniteDuration) {
-
-    def ago() = {
-      val now = DateTime.now()
-      now.minusMillis( d.toMillis.toInt )
-    }
-
-  }
-
-  implicit def toWithAgo(d: FiniteDuration) = new WithAgo(d)
-
 }

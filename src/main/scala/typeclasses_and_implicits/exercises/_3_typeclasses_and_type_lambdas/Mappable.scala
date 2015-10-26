@@ -24,15 +24,7 @@ trait Mappable[F[_]] { self =>
    *   llamar .map en el contexto del nuevo [Mappable] sin que haya ambigüedad sobre
    *   qué metodo se quiere llamar
    */
-  def compose[G[_]](implicit other: Mappable[G]): Mappable[ Lambda[ X => F[G[X]] ] ] = {
-    new Mappable[Lambda[X => F[G[X]]]] {
-      def map[A, B](fga: F[G[A]])(f: A => B): F[G[B]] = {
-        self.map(fga) { ga =>
-          other.map(ga)(f)
-        }
-      }
-    }
-  }
+  //def compose[G[_]](implicit other: Mappable[G]): Mappable[ ??? ] = { ... }
 
 }
 
@@ -60,24 +52,13 @@ object Mappable {
    * Definir un  Mappable para las Listas de Options:
    * ListOfOptionsMappable.map( List(Some(1),None,Some(3)) )( _ + 1 ) == List(Some(2), None, Some(4))
    */
-  implicit object ListOfOptionsMappable extends Mappable[ Lambda[ X => List[Option[X]] ]] {
-    def map[A,B](lopt: List[Option[A]])(f: A => B): List[Option[B]] = {
-      lopt.map( opt => opt.map(f) )
-    }
-  }
+  implicit object ListOfOptionsMappable //extends Mappable[ ??? ] { ... }
 
   /**
    * Ejercicio 3.3
    * Utilizar la función definida en el ejercicio 2 para implementar
    * el [Mappable] del ejercicio 1
    */
-  implicit val ListOfOptionsMappable2 = ListMappable.compose(OptionMappable)
-  implicit val ListOfOptionsMappable3 = ListMappable.compose[Option]
-  implicit val ListOfOptionsMappable4 = Mappable[List].compose[Option]
-
-  ListOfOptionsMappable.map(List(Some(1),None,Some(2)))(_+1)
-  ListOfOptionsMappable2.map(List(Some(1),None,Some(2)))(_+1)
-  ListOfOptionsMappable3.map(List(Some(1),None,Some(2)))(_+1)
-  ListOfOptionsMappable4.map(List(Some(1),None,Some(2)))(_+1)
+  val ListOfOptionsMappable2 = ???
 
 }

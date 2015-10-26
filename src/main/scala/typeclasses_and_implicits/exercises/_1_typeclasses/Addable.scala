@@ -36,7 +36,7 @@ object Addable {
    * 0 + 4 + 10 + 7 + 5
    */
   def addAll[T](ts: List[T])(implicit addable: Addable[T]): T = {
-    ts.foldLeft(addable.zero)(addable.add)
+    ???
   }
 
   /**
@@ -49,11 +49,6 @@ object Addable {
    * En otras palabras una función con esta firma:
    */
   implicit def product[S,T](implicit addS: Addable[S], addT: Addable[T]): Addable[(S,T)] =
-    new Addable[(S,T)] {
-      def zero = (addS.zero, addT.zero)
-      def add(a: (S,T), b: (S,T)): (S,T) = (a,b) match {
-        case ((aS,aT),(bS,bT)) => (addS.add(aS,bS), addT.add(aT,bT))
-      }
-    }
+    ???
 
 }
