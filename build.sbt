@@ -1,4 +1,4 @@
-name := "hkt-tc-exercises"
+name := "typeclasses-and-implicits-exercises"
 
 version := "0.0.0"
 
